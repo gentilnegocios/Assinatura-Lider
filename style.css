@@ -14,12 +14,12 @@ body {
   min-height: 100vh;
   padding: 10px;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(115deg, #89d340 10%, #18ab29 90%);
+  background: linear-gradient(135deg, #0e2d61 0%, #017a82 100%);
 }
 .btn-download {
-  background-color: #89d340;
+  background-color: #0c1f4d;
   border-radius: 28px;
-  border: 1px solid #18ab29;
+  border: 1px solid #0a183a;
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
@@ -31,7 +31,7 @@ body {
   max-width: 15em;
 }
 .btn-download:hover {
-  background-color: #5cbf2a;
+  background-color: #16478c;
   color: #fff;
 }
 .container {
@@ -74,7 +74,7 @@ section#colaborador form {
 
 section#colaborador input {
   background-color: white;
-  color: black;
+  color: white;
   font-weight: bolder;
 }
 
@@ -89,7 +89,7 @@ section#lider form {
 
 section#lider input {
   background-color: white;
-  color: black;
+  color: #000;
   font-weight: bolder;
 }
 @media (max-width: 1024px) {

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -29,58 +28,46 @@
           <form>
             <div class="form-group col">
               <div class="col-auto">
-                <!-- Input referente ao nome do lider -->
-                <label id="label-nomelider" for="nomelider"
-                  >Nome do lider</label
-                >
+                <label for="nomelider">Nome do líder</label>
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Nome e Sobrenome"
                   id="nomelider"
-                  required="true"
+                  required
                 />
               </div>
             </div>
 
             <div class="form-group col">
               <div class="col-auto">
-                <!-- Input referente ao nome do lider -->
-                <label id="label-cargolider" for="cargolider">Cargo</label>
+                <label for="cargolider">Cargo</label>
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Digite o seu cargo"
                   id="cargolider"
-                  required="true"
+                  required
                 />
               </div>
             </div>
 
             <div class="row">
               <div class="col">
-                <label id="label-telefonelider" for="telefonelider"
-                  >Celular (Opcional)</label
-                >
+                <label for="telefonelider">Celular (Opcional)</label>
                 <input
                   type="tel"
                   class="form-control"
                   placeholder="(XX) XXXXX-XXXX"
                   id="telefonelider"
-                  maxlength="11"
+                  maxlength="15"
                 />
               </div>
             </div>
-            <!-- /form-row -->
           </form>
-          <!-- Canva referente a imagem, usado apenas para gerar a imagem -->
-          <canvas
-            class="img-fluid"
-            id="clider"
-            width="100%"
-            height="100%"
-          ></canvas>
 
+          <!-- Canvas e imagem de visualização -->
+          <canvas class="img-fluid" id="clider"></canvas>
           <a id="link" target="new_blank"></a>
           <div id="toggle" class="signature">
             <img
@@ -91,23 +78,14 @@
             />
           </div>
 
-          <!-- Download da imagem -->
           <button type="submit" onclick="saveImagelider()" class="btn-download">
             Baixar Assinatura
           </button>
-          <!--
-			 -->
         </div>
-        <!-- /row -->
       </div>
-      <!-- /container -->
     </section>
+
     <div class="fixed-icons">
-      <a href="https://www.gentilnegocios.com.br/" target="_blank"
-        ><img
-          src="https://raw.githubusercontent.com/gentilnegocios/Assinatura/refs/heads/main/_img/Gentil.png"
-          alt="Gentil"
-      /></a>
       <a href="https://central.gentilnegocios.com.br/" target="_blank"
         ><img
           src="https://raw.githubusercontent.com/gentilnegocios/Assinatura/refs/heads/main/_img/logo-tex.png"
@@ -120,125 +98,119 @@
       /></a>
     </div>
 
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <!-- Bootstrap Bundle -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
-  </body>
+    <!-- SCRIPT -->
+    <script type="text/javascript">
+      const ctx2 = clider.getContext("2d");
+      const assinatura_customlider = new Image();
 
-  <script type="text/javascript" crossorigin="anonymous">
-    ctx2 = clider.getContext("2d");
-
-    assinatura_customlider = new Image();
-    //Tamanho da assinatura, devendo ser o mesmo tamanho da imagem para redenrização
-    assinatura_customlider.onload = () => {
-      clider.width = 1080;
-      clider.height = 257;
-      renderlider();
-    };
-
-    assinatura_customlider.crossOrigin = "anonymous";
-
-    assinatura_customlider.src = "assinatura.png";
-
-    nomelider.oninput =
-      cargolider.oninput =
-      telefonelider.oninput =
-        renderlider;
-
-    function renderlider() {
-      let { nomelider, cargolider, telefonelider } = getFormDatalider();
-      setInitialImagelider();
-      setTextlider(nomelider, cargolider, telefonelider);
-      setImagelider();
-    }
-
-    //Função para gerar os dados que advem do fomulário, retornando os seus valores
-    function getFormDatalider() {
-      return {
-        nomelider: nomelider.value,
-        cargolider: cargolider.value,
-        telefonelider: telefonelider.value,
+      assinatura_customlider.onload = () => {
+        clider.width = 1080;
+        clider.height = 257;
+        renderlider();
       };
-    }
 
-    function setImagelider() {
-      const assinatura = document.getElementById("assinaturaTemplatelider");
-      assinatura.src = clider.toDataURL();
-      clider.style.display = "none";
-    }
+      assinatura_customlider.crossOrigin = "anonymous";
+      assinatura_customlider.src = "assinatura.png";
 
-    function setInitialImagelider() {
-      ctx2.clearRect(0, 0, clider.width, clider.height);
-      ctx2.globalCompositeOperation = "source-over";
-      ctx2.drawImage(assinatura_customlider, 0, 0, clider.width, clider.height);
-    }
+      nomelider.oninput =
+        cargolider.oninput =
+        telefonelider.oninput =
+          renderlider;
 
-    //Função de configuração do primeiro formulário
-    function setCliplider() {
-      ctx2.globalCompositeOperation = "destination-in";
-      ctx2.globalCompositeOperation = "source-over";
-      ctx2.font = "bolder 30.76px  Montserrat, sans-serif";
-      ctx2.textAlign = "left";
-      ctx2.fillStyle = "black";
-    }
+      function renderlider() {
+        const { nomelider, cargolider, telefonelider } = getFormDatalider();
+        setInitialImagelider();
+        setTextlider(nomelider, cargolider, telefonelider);
+        setImagelider();
+      }
 
-    //Colocação do texto na imgem
-    function setTextlider(textlider, cargolider, telefonelider) {
-      setCliplider();
-      ctx2.textBaseline = "hanging"; //Mostra o texto sendo escrito na tela em tempo real
-      ctx2.fillText(textlider, 270, 62); //Definição de onde o texto ira iniciar nas coordenadas X e Y
-      setCargolider(cargolider); //Configuração do setor/segundo formulário
-      setTelefonelider(telefonelider);
-    }
+      function getFormDatalider() {
+        return {
+          nomelider: document.getElementById("nomelider").value,
+          cargolider: document.getElementById("cargolider").value,
+          telefonelider: document.getElementById("telefonelider").value,
+        };
+      }
 
-    //Configuração do segundo formulárioa
-    function setCargolider(cargolider) {
-      ctx2.globalCompositeOperation = "destination-in";
-      ctx2.globalCompositeOperation = "source-over";
-      ctx2.font = "27px Montserrat, sans-serif";
-      ctx2.textAlign = "left";
-      ctx2.fillStyle = "black";
-      ctx2.textBaseline = "hanging";
-      ctx2.fillText(cargolider, 270, 100); //Definição de onde o texto ira iniciar nas coordenadas X e Y
-    }
+      function setInitialImagelider() {
+        ctx2.clearRect(0, 0, clider.width, clider.height);
+        ctx2.globalCompositeOperation = "source-over";
+        ctx2.drawImage(assinatura_customlider, 0, 0, clider.width, clider.height);
+      }
 
-    //Configuração de campo de telefone
-    function setTelefonelider(telefonelider) {
-      ctx2.globalCompositeOperation = "destination-in";
-      ctx2.globalCompositeOperation = "source-over";
-      ctx2.font = "21px Montserrat, sans-serif";
-      ctx2.textAlign = "left";
-      ctx2.fillStyle = "black";
-      ctx2.textBaseline = "hanging";
-      telefonelider = telefonelider.replace(/\D/g, ""); //Remove tudo o que não é dígito
-      telefonelider = telefonelider.replace(
-        /^(\d{2})(\d{5})(\d{4}).*/,
-        "($1) $2-$3"
-      ); //Adiciona o parentese e hífen ao número
-      ctx2.fillText(telefonelider, 440, 137); //Definição de onde o texto ira iniciar nas coordenadas X e Y
-    }
+      function setImagelider() {
+        const assinatura = document.getElementById("assinaturaTemplatelider");
+        assinatura.src = clider.toDataURL();
+        clider.style.display = "none";
+      }
 
-    //Função para baixar a imagem
-    function saveImagelider() {
-      let link = document.getElementById("link");
-      //$("#telefone").prop('required', true);
-      link.setAttribute("download", "assinatura.png");
-      link.setAttribute(
-        "href",
-        clider.toDataURL().replace("image/png", "image/octet-stream")
-      );
-      link.click();
-    }
-  </script>
+      function setCliplider() {
+        ctx2.globalCompositeOperation = "destination-in";
+        ctx2.globalCompositeOperation = "source-over";
+        ctx2.font = "bolder 25px Montserrat, sans-serif";
+        ctx2.textAlign = "left";
+        ctx2.fillStyle = "white";
+      }
+
+      function setTextlider(nome, cargo, telefone) {
+        setCliplider();
+        ctx2.textBaseline = "hanging";
+        ctx2.fillText(nome, 142, 62);
+        setCargolider(cargo);
+        setTelefoneLider(telefone);
+      }
+
+      function setCargolider(cargo) {
+        ctx2.globalCompositeOperation = "destination-in";
+        ctx2.globalCompositeOperation = "source-over";
+        ctx2.font = "25px Montserrat, sans-serif";
+        ctx2.textAlign = "left";
+        ctx2.fillStyle = "white";
+        ctx2.textBaseline = "hanging";
+        ctx2.fillText(cargo, 142, 100);
+      }
+
+      function setTelefoneLider(telefone) {
+        if (!telefone.trim()) return;
+
+        ctx2.globalCompositeOperation = "destination-in";
+        ctx2.globalCompositeOperation = "source-over";
+        ctx2.font = "13px Montserrat, sans-serif";
+        ctx2.textAlign = "left";
+        ctx2.fillStyle = "white";
+        ctx2.textBaseline = "hanging";
+
+        let numeros = telefone.replace(/\D/g, "");
+
+        if (numeros.length === 10) {
+          numeros = numeros.slice(0, 2) + "9" + numeros.slice(2);
+        }
+
+        const numeroCompletado = numeros.padEnd(11, "_");
+
+        const formatado = numeroCompletado.replace(
+          /^(\d{2}|__)(\d{5}|_____)(\d{4}|____)/,
+          "($1) $2-$3"
+        );
+
+        ctx2.fillText(formatado, 240, 143);
+      }
+
+      function saveImagelider() {
+        let link = document.getElementById("link");
+        link.setAttribute("download", "assinatura.png");
+        link.setAttribute(
+          "href",
+          clider.toDataURL().replace("image/png", "image/octet-stream")
+        );
+        link.click();
+      }
+    </script>
+  </body>
 </html>
